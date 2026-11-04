@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class InventoryTest {
     Inventory inv;
@@ -54,30 +56,26 @@ public class InventoryTest {
         assertTrue(inv.enoughIngredients(r));
     }
 
-
-    @Test
-    void testSetChocolateSets0Neg() {
-        inv.setChocolate(-4);
-        assertEquals(0, inv.getChocolate());
+    @ParameterizedTest 
+    @CsvSource ({
+        "-1,0",
+        "0,0",
+        "1,1"
+    })
+    void testSetIngredients(int input, int output){
+        inv.setChocolate(input);
+        inv.setCoffee(input);
+        inv.setMilk(input);
+        inv.setSugar(input);
+        assertEquals(output, inv.getChocolate());
+        assertEquals(output, inv.getCoffee());
+        assertEquals(output, inv.getMilk());
+        assertEquals(output, inv.getSugar());
     }
-
-    @Test
-    void testSetCoffeeSets0Neg() {
-        inv.setCoffee(-5);
-        assertEquals(0, inv.getCoffee());
+    @Test 
+    void testToString(){
+        String expectedOutput = "Coffee: 15\nMilk: 15\nSugar: 15\nChocolate: 15\n";
+        assertEquals(expectedOutput,inv.toString());
     }
-
-    @Test
-    void testSetMilkSets0Neg() {
-        inv.setMilk(-7);
-        assertEquals(0, inv.getMilk());
-    }
-
-    @Test
-    void testSetSugarSets0Neg() {
-        inv.setSugar(-3);
-        assertEquals(0, inv.getSugar());
-    }
-
     
 }

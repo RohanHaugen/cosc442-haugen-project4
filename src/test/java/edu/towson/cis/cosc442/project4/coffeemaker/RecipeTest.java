@@ -1,11 +1,14 @@
 package edu.towson.cis.cosc442.project4.coffeemaker;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class RecipeTest {
     Recipe r;
@@ -25,42 +28,41 @@ public class RecipeTest {
         r.setAmtChocolate(300);
         assertTrue(r.equals(r1));
     }
+    @Test 
+    void testEqualsNullOther(){
+        Recipe r1= new Recipe();
+        r1.setName("recipea");
+        r.setAmtChocolate(300);
+        assertFalse(r.equals(r1));
 
-
-    @Test
-    void testSetAmtChocolateSets0Neg() {
-        r.setAmtChocolate(-3);
-        assertEquals(0,r.getAmtChocolate());
     }
 
+
+    @ParameterizedTest 
+    @CsvSource ({
+        "-1,0",
+        "0,0",
+        "1,1"
+    })
+    void testSetIngredients(int input, int output){
+        r.setAmtChocolate(input);
+        r.setAmtCoffee(input);
+        r.setAmtMilk(input);
+        r.setAmtSugar(input);
+        r.setPrice(input);
+        assertEquals(output, r.getAmtChocolate());
+        assertEquals(output, r.getAmtCoffee());
+        assertEquals(output, r.getAmtMilk());
+        assertEquals(output, r.getAmtSugar());
+        assertEquals(output, r.getPrice());
+    }
     @Test
-    void testSetAmtCoffeeSets0Neg() {
-        r.setAmtCoffee(-3);
-        assertEquals(0,r.getAmtCoffee());
+    void testToString(){
+        r.setName("Seven");
+        assertEquals("Seven",r.toString());
         
     }
 
-    @Test
-    void testSetAmtMilkSets0Neg() {
-        r.setAmtMilk(-3);
-        assertEquals(0,r.getAmtMilk());
-        
-    }
-
-    @Test
-    void testSetAmtSugarSets0Neg() {
-        r.setAmtSugar(-3);
-        assertEquals(0,r.getAmtSugar());
-        
-    }
-
-  
-
-    @Test
-    void testSetPriceSets0Neg() {
-        r.setPrice(-3);
-        assertEquals(0, r.getPrice());
-    }
 
 
     
