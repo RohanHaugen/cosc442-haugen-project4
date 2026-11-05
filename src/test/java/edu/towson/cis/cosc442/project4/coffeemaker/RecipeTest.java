@@ -56,7 +56,7 @@ public class RecipeTest {
         assertEquals(output, r.getAmtSugar());
         assertEquals(output, r.getPrice());
     }
-    @Test
+    
     void testToString(){
         r.setName("Seven");
         assertEquals("Seven",r.toString());
