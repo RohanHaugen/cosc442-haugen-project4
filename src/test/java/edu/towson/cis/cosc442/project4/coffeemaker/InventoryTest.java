@@ -44,7 +44,7 @@ public class InventoryTest {
         assertFalse(inv.enoughIngredients(r));
 
     }
-    //@Test 
+    @Test 
     void testEnoughIngredientsWorksExact() {
         Recipe r = new Recipe();
         r.setAmtCoffee(15);
@@ -56,7 +56,7 @@ public class InventoryTest {
         assertTrue(inv.enoughIngredients(r));
     }
 
-    //@ParameterizedTest 
+    @ParameterizedTest 
     @CsvSource ({
         "-1,0",
         "0,0",

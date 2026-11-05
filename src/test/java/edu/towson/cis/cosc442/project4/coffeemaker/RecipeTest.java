@@ -20,7 +20,7 @@ public class RecipeTest {
     public void tearDown(){
         r = null;
     }
-    //@Test
+    @Test
     void testEquals() {
         Recipe r1= new Recipe();
         r1.setName("recipea");
@@ -38,7 +38,7 @@ public class RecipeTest {
     }
 
 
-    //@ParameterizedTest 
+    @ParameterizedTest 
     @CsvSource ({
         "-1,0",
         "0,0",
@@ -56,7 +56,7 @@ public class RecipeTest {
         assertEquals(output, r.getAmtSugar());
         assertEquals(output, r.getPrice());
     }
-    
+    @Test
     void testToString(){
         r.setName("Seven");
         assertEquals("Seven",r.toString());

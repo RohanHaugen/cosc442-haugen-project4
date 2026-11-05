@@ -54,12 +54,12 @@ public class CoffeeMakerTest {
     public void tearDown(){
         machine = null;
     }
-    //@Test
+    @Test
     void testAddInventoryWorksReturnsTrue() {
         boolean actualResult = machine.addInventory(1,1,1,1);
         assertTrue(actualResult);
     }
-    //@Test 
+    @Test 
     void testAddInventoryWorksAddsInventory() {
         machine.addInventory(1,2,3,4);
         Inventory inv = machine.checkInventory();
@@ -72,7 +72,7 @@ public class CoffeeMakerTest {
         assertEquals(18, sug);
         assertEquals(19, cho);
     }
-    //@ParameterizedTest 
+    @ParameterizedTest 
     @CsvSource ({
         "0,1,1,1",
         "1,0,1,1",
@@ -92,7 +92,7 @@ public class CoffeeMakerTest {
         assertEquals(15+sug, expSug);
         assertEquals(15+cho,expCho);
     }
-    //@ParameterizedTest 
+    @ParameterizedTest 
     @CsvSource ({
         "-1,1,1,1",
         "1,-1,1,1",
@@ -150,7 +150,7 @@ public class CoffeeMakerTest {
         boolean actualResult = machine.addRecipe(null);
         assertFalse(actualResult);
     }
-    //@Test
+    @Test
     void testCheckInventoryWorks() {
         Inventory inv = machine.checkInventory();
         int expCof = inv.getCoffee();
@@ -234,7 +234,7 @@ public class CoffeeMakerTest {
         assertFalse(actualResult);
     }
 
-    //@Test
+    @Test
     void testGetRecipeForNameFailsReturnsEmptyRecipe() {
         Recipe actualResult = machine.getRecipeForName("Seven");
         assertNull(actualResult.getName());
@@ -245,7 +245,7 @@ public class CoffeeMakerTest {
         assertEquals(0,actualResult.getAmtChocolate());
     }
 
-    //@Test
+    @Test
     void testGetRecipes() {
         Recipe[] actualResult = machine.getRecipes();
         for(int i = 0;i<actualResult.length;i++){
@@ -258,7 +258,7 @@ public class CoffeeMakerTest {
         }
     }
 
-    //@Test
+    @Test
     void testMakeCoffeeWorksReturnsAmountPaid() {
         int actualResult = machine.makeCoffee(r1, 10);
         assertEquals(7,actualResult);
@@ -277,17 +277,17 @@ public class CoffeeMakerTest {
         assertEquals(12, expSug);
         assertEquals(11,expCho);
     }
-    //@Test 
+    @Test 
     void testMakeCoffeeWorksExactPrice() {
         int actualResult = machine.makeCoffee(r1,3);
         assertEquals(0,actualResult);
     }
-    //@Test 
+    @Test 
     void testMakeCoffeeWorksExactIngredients() {
         int actualResult = machine.makeCoffee(r4,10);
         assertEquals(7,actualResult);
     }
-    //@Test 
+    @Test 
     void testMakeCoffeeFailsWhenNoIngredients(){
         int actualResult = machine.makeCoffee(r3,10);
         assertEquals(10, actualResult);
@@ -301,7 +301,7 @@ public class CoffeeMakerTest {
         assertEquals(15, expSug);
         assertEquals(15,expCho);
     }
-    //@Test 
+    @Test 
     void testMakeCoffeeFailsWhenNoMoney() {
         int actualResult = machine.makeCoffee(r2,3);
         assertEquals(3, actualResult);
